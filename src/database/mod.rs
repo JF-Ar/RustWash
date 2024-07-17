@@ -1,7 +1,8 @@
 use sqlx::{postgres::PgPoolOptions, PgPool, Postgres, Pool};
 use dotenv::dotenv;
 
-async fn connect() -> Pool<Postgres> {
+pub async fn connect() -> Pool<Postgres> {
+    dotenv().ok();
     let url = std::env::var("DATABASE_URL").expect("DATABASE_URL is not set in .env file");
     PgPoolOptions::new()
         .max_connections(5)
@@ -11,11 +12,14 @@ async fn connect() -> Pool<Postgres> {
 }
 
 pub async fn migrate() -> Result<(), sqlx::Error> {
-    dotenv().ok();
-    let pool = connect().await;
     sqlx::migrate!("src/database/migrations")
-        .run(&pool)
+        .run(&connect().await)
         .await
         .expect("Failed to migrate database");
     Ok(())
+}
+
+#[derive(Clone)]
+pub struct AppState {
+    pub postgres_client: PgPool,
 }

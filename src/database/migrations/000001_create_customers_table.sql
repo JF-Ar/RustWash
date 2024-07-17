@@ -1,7 +1,7 @@
 -- Create the Customer table
-CREATE TABLE Customer (
-    ID SERIAL PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Phone VARCHAR(20),
-    Email VARCHAR(100)
+CREATE TABLE customer (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(20),
+    email VARCHAR(100)
 );

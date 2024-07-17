@@ -1,18 +1,18 @@
 -- Create the Appointment table
-CREATE TABLE Appointment (
-    ID SERIAL PRIMARY KEY,
-    Date DATE NOT NULL,
-    Time TIME NOT NULL,
-    CustomerID INT NOT NULL,
-    VehicleID INT NOT NULL,
-    WashTypeID INT NOT NULL,
+CREATE TABLE appointment (
+    id SERIAL PRIMARY KEY,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    customer_id INT NOT NULL,
+    vehicle_id INT NOT NULL,
+    wash_type_iD INT NOT NULL,
     CONSTRAINT fk_customer_appointment
-        FOREIGN KEY(CustomerID) 
-            REFERENCES Customer(ID),
+        FOREIGN KEY(customer_id)
+            REFERENCES customer(id),
     CONSTRAINT fk_vehicle_appointment
-        FOREIGN KEY(VehicleID) 
-            REFERENCES Vehicle(ID),
+        FOREIGN KEY(vehicle_id)
+            REFERENCES vehicle(id),
     CONSTRAINT fk_wash_type_appointment
-        FOREIGN KEY(WashTypeID) 
-            REFERENCES WashType(ID)
+        FOREIGN KEY(wash_type_id)
+            REFERENCES wash_type(id)
 );
