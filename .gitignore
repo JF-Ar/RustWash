@@ -1,5 +1,6 @@
 /target
+/.*
 .env
 .idea/
 Cargo.lock
-.idea/RustWash.iml
+/.idea
